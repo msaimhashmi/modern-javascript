@@ -1,4 +1,4 @@
-// Log to console
+// LOG TO CONSOLE
 console.log('Hello World');
 console.log(123);
 console.log(true);
