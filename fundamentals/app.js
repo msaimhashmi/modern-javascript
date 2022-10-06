@@ -1,29 +1,37 @@
 /********* LOG TO CONSOLE **********/
-console.log('Hello World');
-console.log(123);
-console.log(true);
-var greeting = 'Hello';
-console.log(greeting);
-console.log([1,2,3,4]);
-console.log({a:1, b:2});
-console.table({a:1, b:2});
+// console.log('Hello World');
+// console.log(123);
+// console.log(true);
+// var greeting = 'Hello';
+// console.log(greeting);
+// console.log([1,2,3,4]);
+// console.log({a:1, b:2});
+// console.table({a:1, b:2});
 
-console.error('This is some error');
-console.clear();
-console.warn('This is a warning');
-console.time('Hello');
-  console.log('Hello World');
-  console.log('Hello World');
-  console.log('Hello World');
-  console.log('Hello World');
-  console.log('Hello World');
-  console.log('Hello World');
-console.timeEnd('Hello');
+// console.error('This is some error');
+// console.clear();
+// console.warn('This is a warning');
+// console.time('Hello');
+//   console.log('Hello World');
+//   console.log('Hello World');
+//   console.log('Hello World');
+//   console.log('Hello World');
+//   console.log('Hello World');
+//   console.log('Hello World');
+// console.timeEnd('Hello');
 /*
   multi
   line
   comments
 */
+
+
+
+
+
+
+
+
 
 
 /********* VARIABLES **********/
@@ -67,21 +75,58 @@ console.timeEnd('Hello');
 // const greeting;
 
 // We can change value inside const variable but cannot reassign directly
-const person = {
-    name: 'John',
-    age: 30
-  }
+// const person = {
+//     name: 'John',
+//     age: 30
+//   }
   
-  person.name = 'Sara';
-  person.age = 32;
+//   person.name = 'Sara';
+//   person.age = 32;
   
-  // console.log(person);
+//   // console.log(person);
   
-  const numbers = [1,2,3,4,5];
-  numbers.push(6);
+//   const numbers = [1,2,3,4,5];
+//   numbers.push(6);
 
-// like we cannot reassign that new numbers array in const, it would give an error
-//   numbers = [1,2,3,4,5,6];
+// // like we cannot reassign that new numbers array in const, it would give an error
+// //   numbers = [1,2,3,4,5,6];
   
-  console.log(numbers);
+//   console.log(numbers);
 
+
+
+
+
+
+
+
+
+
+/************** DATA TYPES ****************/
+
+// PRIMITIVE
+
+// // String
+// const name = 'John Doe';
+// // Number
+// const age = 45;
+// // Boolean
+// const hasKids = true;
+// // Null
+// const car = null;
+// // Undefined
+// let test;
+// // Symbol
+// const sym = Symbol();
+
+// // REFERENCE TYPES - Objects (We will get data from memory/reference like 'address.city')
+// // Array
+// const hobbies = ['movies', 'music'];
+// // Object literal
+// const address = {
+//   city: 'Boston',
+//   state: 'MA'
+// }
+// const today = new Date();
+// console.log(today);
+// console.log(typeof today);
