@@ -968,14 +968,26 @@
 // // });
 
 // // MAP
+
+// // Definition and Usage
+// // map() creates a new array from calling a function for every array element.
+// // map() calls a function once for each element in an array.
+// // map() does not execute the function for empty elements.
+// // map() does not change the original array.
+
+
+// // const users = [0,1,2,32,34,43,65,78,23]
 // const users  = [
-//   {id: 1, name:'John'},
+//   {id: 1, name:'saim'},
 //   {id: 2, name: 'Sara'},
 //   {id: 3, name: 'Karen'},
 //   {id: 4, name: 'Steve'}
 // ];
 
-// const ids = users.map(function(user){
+// const ids = users.map(function(user, i, arr){
+//   if(user.name == 'saim')
+//     user.name += ' hashmi';
+//     // user++;
 //   return user;
 // });
 
