@@ -613,3 +613,70 @@
 
 //   // e.preventDefault();
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************* EVENT BUBBLING AND EVENT DELIGATION ***********************/
+
+// EVENT BUBBLING - bubbling event have access to its upper all parent elements through the dom
+
+// see the example where we click only an element and we have all parents in console to see the access of parents.
+
+// document.querySelector('.card-title').addEventListener('click', function(){
+//   console.log('card title');
+// });
+
+// document.querySelector('.card-content').addEventListener('click', function(){
+//   console.log('card content');
+// });
+
+// document.querySelector('.card').addEventListener('click', function(){
+//   console.log('card');
+// });
+
+// document.querySelector('.col').addEventListener('click', function(){
+//   console.log('col');
+// });
+
+// EVENT DELGATION - deligation event have access to its all child elements through the dom where we can do anything through the conditions.
+
+// const delItem = document.querySelector('.delete-item');
+
+// delItem.addEventListener('click', deleteItem);
+
+// document.body.addEventListener('click', deleteItem);
+
+// see the example where we don't need querySelectorAll to select all lis to delete. We just pass the main element that have all elements in this child so we can delete specific li to via condition.
+
+// function deleteItem(e){
+//   // if(e.target.parentElement.className === 'delete-item secondary-content'){
+//   //   console.log('delete item');
+//   // }
+
+//   if(e.target.parentElement.classList.contains('delete-item')){
+//     console.log('delete item');
+//     e.target.parentElement.parentElement.remove();
+//   }
+// }
