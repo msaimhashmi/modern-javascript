@@ -640,7 +640,7 @@
 
 /********************* EVENT BUBBLING AND EVENT DELIGATION ***********************/
 
-// EVENT BUBBLING - bubbling event have access to its upper all parent elements through the dom
+// EVENT BUBBLING - bubbling event have access to its upper all related parent elements through the dom
 
 // see the example where we click only an element and we have all parents in console to see the access of parents.
 
@@ -660,7 +660,7 @@
 //   console.log('col');
 // });
 
-// EVENT DELGATION - deligation event have access to its all child elements through the dom where we can do anything through the conditions.
+// EVENT DELGATION - deligation event have access to its all related child elements through the dom where we can do anything through the conditions.
 
 // const delItem = document.querySelector('.delete-item');
 
