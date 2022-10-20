@@ -1,5 +1,10 @@
-// Define UI Variables
+// MY RULES (some suggested rules using in development of project)
+// RULE 1 - define UI variable
+// RULE 2 - load all event listeners and make all events inside them
+// RULE 3 - dont make function inside function it looks messy and complicated. Just call function inside function and make this function out of the function
+// RULE 4 - make all works happen in javascript files and not use javascript directly in html.
 
+// Define UI Variables
 const form = document.querySelector('#task-form');
 const taskList = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
