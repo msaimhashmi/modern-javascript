@@ -186,7 +186,68 @@
 
 
 
-// CALLBACK FUNCTION
+// // CALLBACK FUNCTION
+
+// function getTodos(callback){
+//     const request = new XMLHttpRequest();
+    
+//     request.addEventListener('readystatechange', ()=> {
+//         // console.log(request);
+//         if(request.readyState === 4 && request.status === 200){
+//             // console.log(request.responseText);
+//             callback(request.responseText);
+//         }else if(request.readyState === 4){
+//             // console.log('something went wrong!');
+//             callback('something went wrong!');
+//         }
+//     });
+    
+//     request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+//     request.send();
+// }
+
+
+// console.log(1);
+// console.log(2);
+// console.log(3);
+// getTodos((err, data)=>{
+//     console.log('callback fired!');
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(data);
+//     }
+// });
+// console.log(4);
+// console.log(5);
+
+
+// // DIFFERENCE BETWEEN SYNCHRONOUS/ASYNCHRONOUS CALLBACK FUNCTIONS
+// // synchronous functions execute one line of code at a time and blocking further execution until the current line is completed and it does not take a callback function as a parameter. 
+// // while asynchronous functions execute non-blocking operations and typically take a callback function as a parameter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 5
+// JSON DATA
+
+// JSON data looks like a javascrip objects but its not. JSON data is simply a string. The string is formated that looks like a javascript objects.
+// JSON format is string because when the browser exchange the data from the server then it has to be text format because that is the format to data transfer.
+// JSON is a way of transfering data between server and client.
 
 function getTodos(callback){
     const request = new XMLHttpRequest();
@@ -194,22 +255,24 @@ function getTodos(callback){
     request.addEventListener('readystatechange', ()=> {
         // console.log(request);
         if(request.readyState === 4 && request.status === 200){
-            // console.log(request.responseText);
-            callback(request.responseText);
+
+            // convert text format data which looks like json into original json format 
+            const data = JSON.parse(request.responseText);
+            callback(data);
         }else if(request.readyState === 4){
             // console.log('something went wrong!');
             callback('something went wrong!');
         }
     });
     
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+    // request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+    
+    // create and call our own json
+    request.open('GET', 'todos.json');
     request.send();
 }
 
 
-console.log(1);
-console.log(2);
-console.log(3);
 getTodos((err, data)=>{
     console.log('callback fired!');
     if(err){
@@ -218,10 +281,3 @@ getTodos((err, data)=>{
         console.log(data);
     }
 });
-console.log(4);
-console.log(5);
-
-
-// DIFFERENCE BETWEEN SYNCHRONOUS/ASYNCHRONOUS CALLBACK FUNCTIONS
-// synchronous functions execute one line of code at a time and blocking further execution until the current line is completed and it does not take a callback function as a parameter. 
-// while asynchronous functions execute non-blocking operations and typically take a callback function as a parameter.
