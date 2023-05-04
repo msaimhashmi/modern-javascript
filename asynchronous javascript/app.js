@@ -471,44 +471,83 @@
 
 
 
-// EP 8
-// CHAINING PROMISES
+// // EP 8
+// // CHAINING PROMISES
 
-// We can chain promises together
-// We can perform multiple asynchronous task in order.
+// // We can chain promises together
+// // We can perform multiple asynchronous task in order.
 
-function getTodos(resource){
-    const request = new XMLHttpRequest();
-    return new Promise((resolve, reject)=>{
-        request.addEventListener('readystatechange', ()=> {
-            if(request.readyState === 4 && request.status === 200){
-                const data = JSON.parse(request.responseText);
-                resolve(data);
-            }else if(request.readyState === 4){
-                reject('Something went wrong!');
-            }
-        });
-        request.open('GET', resource);
-        request.send();
-    });
-}
+// function getTodos(resource){
+//     const request = new XMLHttpRequest();
+//     return new Promise((resolve, reject)=>{
+//         request.addEventListener('readystatechange', ()=> {
+//             if(request.readyState === 4 && request.status === 200){
+//                 const data = JSON.parse(request.responseText);
+//                 resolve(data);
+//             }else if(request.readyState === 4){
+//                 reject('Something went wrong!');
+//             }
+//         });
+//         request.open('GET', resource);
+//         request.send();
+//     });
+// }
 
-getTodos('todos/saim.json').then(data=>{
-    console.log('Promise resolve data 1:', data);
+// getTodos('todos/saim.json').then(data=>{
+//     console.log('Promise resolve data 1:', data);
 
-    // we can do like this but it looks messy.
-    // getTodos('todos/mohtashim.json').then(data=>{
-    //     console.log('Messy result:',data);
-    // });
+//     // we can do like this but it looks messy.
+//     // getTodos('todos/mohtashim.json').then(data=>{
+//     //     console.log('Messy result:',data);
+//     // });
 
-    // this is authentic way to do chaining promises
-    // this return getTodos complete function which return a promise which is above.
-    return getTodos('todos/mohtashim.json');
-}).then(data=>{
-    console.log('Promise resolve data 2:', data);
-    return getTodos('todos/hamza.json');
-}).then(data=>{
-    console.log('Promise resolve data 3:', data);
-}).catch(err=>{
-    console.log('Promise reject', err);
+//     // this is authentic way to do chaining promises
+//     // this return getTodos complete function which return a promise which is above.
+//     return getTodos('todos/mohtashim.json');
+// }).then(data=>{
+//     console.log('Promise resolve data 2:', data);
+//     return getTodos('todos/hamza.json');
+// }).then(data=>{
+//     console.log('Promise resolve data 3:', data);
+// }).catch(err=>{
+//     console.log('Promise reject', err);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 9
+// THE FETCH API
+
+// We fetch the data. Fetch return a promise 
+// we take the response via .then(response)
+// we return response.json() that returns a promise so we can tack on .then to get and show the data via chaining method
+// we can also catch the error at the end
+
+
+// Fetch return a promise thats why we need to add then and catch
+fetch('todos/saimd.json').then((response)=>{
+    console.log('Resolved:', response);
+    
+    // this json return a promise so we need to make a chain 
+    // this json response take all data inside fetch response and return that to the resolve/reject 
+    return response.json();
+}).then((data)=>{
+    // inside that we take and show all the data which get from the json method.
+    console.log('Resolve Json Data:', data);
+}).catch((err)=>{
+    console.log('Rejected:',err);
 });
