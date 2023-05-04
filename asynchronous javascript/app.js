@@ -366,75 +366,126 @@
 
 
 
-// EP 7
-// PROMISES
+// // EP 7
+// // PROMISES
 
 
-// A promise is an object representing the eventual completion or failure of an asynchronous operation. OR A Promise is a JavaScript object that links producing code and consuming code
-// A javascript promise object contains both the producing code and calls to the consuming code. It can be used to deal with async operation in javascript.
-// "Producing code" is code that can take some time
-// "Consuming code" is code that must wait for the result
-// Promise States: Pending, Fullfilled/Resolved, Rejected.
+// // A promise is an object representing the eventual completion or failure of an asynchronous operation. OR A Promise is a JavaScript object that links producing code and consuming code
+// // A javascript promise object contains both the producing code and calls to the consuming code. It can be used to deal with async operation in javascript.
+// // "Producing code" is code that can take some time
+// // "Consuming code" is code that must wait for the result
+// // Promise States: Pending, Fullfilled/Resolved, Rejected.
 
 
 
-// pronise example
+// // pronise example
 
-// when we use promise the first thing to do return a new promise.
-// now a promise is something which going to takes some time to do.
-// promise is ultimately going to lead to one of two outcomes
-// 1 is resolve which mean we get the data we want its called resolved the promise .
-// 2 is reject which mean we get the error some points its called reject the promise.
+// // when we use promise the first thing to do return a new promise.
+// // now a promise is something which going to takes some time to do.
+// // promise is ultimately going to lead to one of two outcomes
+// // 1 is resolve which mean we get the data we want its called resolved the promise .
+// // 2 is reject which mean we get the error some points its called reject the promise.
 
-const getSomething = () => {
+// const getSomething = () => {
 
-    // this promise takes a parameter as a function
-    // inside this function this is where we typically do the network request. It maybe fetch some data and something more.
-    // inside this promise we do one thing either resolved or reject.  
+//     // this promise takes a parameter as a function
+//     // inside this function this is where we typically do the network request. It maybe fetch some data and something more.
+//     // inside this promise we do one thing either resolved or reject.  
     
-    // in promise we automatically get access to two parameters resolve/reject. It is builtin in promise api in javascript.
-    return new Promise((resolve, reject)=>{
-        // fetch something
-        // resolve('some data');        
-        reject('some error');        
-    });
+//     // in promise we automatically get access to two parameters resolve/reject. It is builtin in promise api in javascript.
+//     return new Promise((resolve, reject)=>{
+//         // fetch something
+//         // resolve('some data');        
+//         reject('some error');        
+//     });
 
-};
+// };
 
 
-// getSomething this return a new promise with return of resolve/reject.
-// when we get a promise back from a function then we can tack on a .then method. 
-// promise is saying that if you pass a function in (.then as first function) then i will fire that function when we resolve(which is first parameter) the promise.  
-// promise is saying that if you pass a function in (.then as second fucntion) then i will fire that function when we reject(which is second parameter) the promise.  
+// // getSomething this return a new promise with return of resolve/reject.
+// // when we get a promise back from a function then we can tack on a .then method. 
+// // promise is saying that if you pass a function in (.then as first function) then i will fire that function when we resolve(which is first parameter) the promise.  
+// // promise is saying that if you pass a function in (.then as second fucntion) then i will fire that function when we reject(which is second parameter) the promise.  
 
-// getSomething().then((data)=>{
-//     console.log(data);
-// }, (err)=>{
-//     console.log(err);
-// });
+// // getSomething().then((data)=>{
+// //     console.log(data);
+// // }, (err)=>{
+// //     console.log(err);
+// // });
 
-// we use officially catch instead of give a second parameter because catch looks neater than give a second parameter.
-// getSomething().then(data=>{
-//     console.log(data);
+// // we use officially catch instead of give a second parameter because catch looks neater than give a second parameter.
+// // getSomething().then(data=>{
+// //     console.log(data);
+// // }).catch(err=>{
+// //     console.log(err);
+// // });
+
+// // In summary: This is promise we either resolve something or reject something and then fire one of two functions depending on that.
+
+
+// // Do that in official way.
+// function getTodos(resource){
+//     const request = new XMLHttpRequest();
+    
+//     return new Promise((resolve, reject)=>{
+//         request.addEventListener('readystatechange', ()=> {
+
+//             if(request.readyState === 4 && request.status === 200){
+//                 const data = JSON.parse(request.responseText);
+//                 resolve(data);
+//             }else if(request.readyState === 4){
+//                 reject('something went wrong!');
+//             }
+//         });
+//         request.open('GET', resource);
+//         request.send();
+//     });
+// }
+
+// getTodos('todos/saim.json').then(data=>{
+//     console.log('Promise resolve:',data);
 // }).catch(err=>{
-//     console.log(err);
+//     console.log('Promise reject',err);
 // });
 
-// In summary: This is promise we either resolve something or reject something and then fire one of two functions depending on that.
+
+// // So this is another way other than using callbacks to work with asynchronous code.
+// // this is handy when try to sequentially get data one after another because we going to able to chain promises together. 
 
 
-// Do that in official way.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 8
+// CHAINING PROMISES
+
+// We can chain promises together
+// We can perform multiple asynchronous task in order.
+
 function getTodos(resource){
     const request = new XMLHttpRequest();
-    
     return new Promise((resolve, reject)=>{
         request.addEventListener('readystatechange', ()=> {
-
             if(request.readyState === 4 && request.status === 200){
                 const data = JSON.parse(request.responseText);
                 resolve(data);
             }else if(request.readyState === 4){
-                reject('something went wrong!');
+                reject('Something went wrong!');
             }
         });
         request.open('GET', resource);
@@ -443,11 +494,21 @@ function getTodos(resource){
 }
 
 getTodos('todos/saim.json').then(data=>{
-    console.log('Promise resolve:',data);
+    console.log('Promise resolve data 1:', data);
+
+    // we can do like this but it looks messy.
+    // getTodos('todos/mohtashim.json').then(data=>{
+    //     console.log('Messy result:',data);
+    // });
+
+    // this is authentic way to do chaining promises
+    // this return getTodos complete function which return a promise which is above.
+    return getTodos('todos/mohtashim.json');
+}).then(data=>{
+    console.log('Promise resolve data 2:', data);
+    return getTodos('todos/hamza.json');
+}).then(data=>{
+    console.log('Promise resolve data 3:', data);
 }).catch(err=>{
-    console.log('Promise reject',err);
+    console.log('Promise reject', err);
 });
-
-
-// So this is another way other than using callbacks to work with asynchronous code.
-// this is handy when try to sequentially get data one after another because we going to able to chain promises together. 
