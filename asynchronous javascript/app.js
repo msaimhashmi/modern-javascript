@@ -242,14 +242,66 @@
 
 
 
-// EP 5
-// JSON DATA
+// // EP 5
+// // JSON DATA
 
-// JSON data looks like a javascrip objects but its not. JSON data is simply a string. The string is formated that looks like a javascript objects.
-// JSON format is string because when the browser exchange the data from the server then it has to be text format because that is the format to data transfer.
-// JSON is a way of transfering data between server and client.
+// // JSON data looks like a javascrip objects but its not. JSON data is simply a string. The string is formated that looks like a javascript objects.
+// // JSON format is string because when the browser exchange the data from the server then it has to be text format because that is the format to data transfer.
+// // JSON is a way of transfering data between server and client.
 
-function getTodos(callback){
+// function getTodos(callback){
+//     const request = new XMLHttpRequest();
+    
+//     request.addEventListener('readystatechange', ()=> {
+//         // console.log(request);
+//         if(request.readyState === 4 && request.status === 200){
+
+//             // convert text format data which looks like json into original json format 
+//             const data = JSON.parse(request.responseText);
+//             callback(data);
+//         }else if(request.readyState === 4){
+//             // console.log('something went wrong!');
+//             callback('something went wrong!');
+//         }
+//     });
+    
+//     // request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+    
+//     // create and call our own json
+//     request.open('GET', 'todos.json');
+//     request.send();
+// }
+
+
+// getTodos((err, data)=>{
+//     console.log('callback fired!');
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(data);
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 6
+// CALLBACK HELL
+// Nested callback is callback hell
+
+function getTodos(resource, callback){
     const request = new XMLHttpRequest();
     
     request.addEventListener('readystatechange', ()=> {
@@ -268,16 +320,34 @@ function getTodos(callback){
     // request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
     
     // create and call our own json
-    request.open('GET', 'todos.json');
+    request.open('GET', resource);
     request.send();
 }
 
-
-getTodos((err, data)=>{
+// this is callback hell because this has multiple todos to get and complete first one and then go next down to the other in order.
+getTodos('todos/saim.json', (err, data)=>{
     console.log('callback fired!');
     if(err){
         console.log(err);
     }else{
         console.log(data);
     }
+
+    getTodos('todos/mohtashim.json', (err, data)=>{
+        console.log('callback fired!');
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+        }
+
+        getTodos('todos/hamza.json', (err, data)=>{
+            console.log('callback fired!');
+            if(err){
+                console.log(err);
+            }else{
+                console.log(data);
+            }
+        });
+    });
 });
