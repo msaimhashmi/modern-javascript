@@ -297,57 +297,157 @@
 
 
 
-// EP 6
-// CALLBACK HELL
-// Nested callback is callback hell
+// // EP 6
+// // CALLBACK HELL
+// // Nested callback is callback hell
 
-function getTodos(resource, callback){
+// function getTodos(resource, callback){
+//     const request = new XMLHttpRequest();
+    
+//     request.addEventListener('readystatechange', ()=> {
+//         // console.log(request);
+//         if(request.readyState === 4 && request.status === 200){
+
+//             // convert text format data which looks like json into original json format 
+//             const data = JSON.parse(request.responseText);
+//             callback(data);
+//         }else if(request.readyState === 4){
+//             // console.log('something went wrong!');
+//             callback('something went wrong!');
+//         }
+//     });
+    
+//     // request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
+    
+//     // create and call our own json
+//     // this is how to request data from different sources one after another sequentially
+//     request.open('GET', resource);
+//     request.send();
+// }
+
+// // this is callback hell because this has multiple todos to get and complete first one and then go next down to the other in order.
+// getTodos('todos/saim.json', (err, data)=>{
+//     console.log('callback fired!');
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(data);
+//     }
+
+//     getTodos('todos/mohtashim.json', (err, data)=>{
+//         console.log('callback fired!');
+//         if(err){
+//             console.log(err);
+//         }else{
+//             console.log(data);
+//         }
+
+//         getTodos('todos/hamza.json', (err, data)=>{
+//             console.log('callback fired!');
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 console.log(data);
+//             }
+//         });
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 7
+// PROMISES
+
+
+// A promise is an object representing the eventual completion or failure of an asynchronous operation. OR A Promise is a JavaScript object that links producing code and consuming code
+// A javascript promise object contains both the producing code and calls to the consuming code. It can be used to deal with async operation in javascript.
+// "Producing code" is code that can take some time
+// "Consuming code" is code that must wait for the result
+// Promise States: Pending, Fullfilled/Resolved, Rejected.
+
+
+
+// pronise example
+
+// when we use promise the first thing to do return a new promise.
+// now a promise is something which going to takes some time to do.
+// promise is ultimately going to lead to one of two outcomes
+// 1 is resolve which mean we get the data we want its called resolved the promise .
+// 2 is reject which mean we get the error some points its called reject the promise.
+
+const getSomething = () => {
+
+    // this promise takes a parameter as a function
+    // inside this function this is where we typically do the network request. It maybe fetch some data and something more.
+    // inside this promise we do one thing either resolved or reject.  
+    
+    // in promise we automatically get access to two parameters resolve/reject. It is builtin in promise api in javascript.
+    return new Promise((resolve, reject)=>{
+        // fetch something
+        // resolve('some data');        
+        reject('some error');        
+    });
+
+};
+
+
+// getSomething this return a new promise with return of resolve/reject.
+// when we get a promise back from a function then we can tack on a .then method. 
+// promise is saying that if you pass a function in (.then as first function) then i will fire that function when we resolve(which is first parameter) the promise.  
+// promise is saying that if you pass a function in (.then as second fucntion) then i will fire that function when we reject(which is second parameter) the promise.  
+
+// getSomething().then((data)=>{
+//     console.log(data);
+// }, (err)=>{
+//     console.log(err);
+// });
+
+// we use officially catch instead of give a second parameter because catch looks neater than give a second parameter.
+// getSomething().then(data=>{
+//     console.log(data);
+// }).catch(err=>{
+//     console.log(err);
+// });
+
+// In summary: This is promise we either resolve something or reject something and then fire one of two functions depending on that.
+
+
+// Do that in official way.
+function getTodos(resource){
     const request = new XMLHttpRequest();
     
-    request.addEventListener('readystatechange', ()=> {
-        // console.log(request);
-        if(request.readyState === 4 && request.status === 200){
+    return new Promise((resolve, reject)=>{
+        request.addEventListener('readystatechange', ()=> {
 
-            // convert text format data which looks like json into original json format 
-            const data = JSON.parse(request.responseText);
-            callback(data);
-        }else if(request.readyState === 4){
-            // console.log('something went wrong!');
-            callback('something went wrong!');
-        }
-    });
-    
-    // request.open('GET', 'https://jsonplaceholder.typicode.com/todos');
-    
-    // create and call our own json
-    request.open('GET', resource);
-    request.send();
-}
-
-// this is callback hell because this has multiple todos to get and complete first one and then go next down to the other in order.
-getTodos('todos/saim.json', (err, data)=>{
-    console.log('callback fired!');
-    if(err){
-        console.log(err);
-    }else{
-        console.log(data);
-    }
-
-    getTodos('todos/mohtashim.json', (err, data)=>{
-        console.log('callback fired!');
-        if(err){
-            console.log(err);
-        }else{
-            console.log(data);
-        }
-
-        getTodos('todos/hamza.json', (err, data)=>{
-            console.log('callback fired!');
-            if(err){
-                console.log(err);
-            }else{
-                console.log(data);
+            if(request.readyState === 4 && request.status === 200){
+                const data = JSON.parse(request.responseText);
+                resolve(data);
+            }else if(request.readyState === 4){
+                reject('something went wrong!');
             }
         });
+        request.open('GET', resource);
+        request.send();
     });
+}
+
+getTodos('todos/saim.json').then(data=>{
+    console.log('Promise resolve:',data);
+}).catch(err=>{
+    console.log('Promise reject',err);
 });
+
+
+// So this is another way other than using callbacks to work with asynchronous code.
+// this is handy when try to sequentially get data one after another because we going to able to chain promises together. 
