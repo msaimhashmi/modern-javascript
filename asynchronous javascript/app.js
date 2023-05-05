@@ -1,3 +1,113 @@
+// CALLBACK
+
+// "I will call back later!"
+// A callback is a function passed as an argument to another function
+// This technique allows a function to call another function
+// A callback function can run after another function has finished
+
+// Definition
+// A JavaScript callback is a function which is to be executed after another function has finished execution. A more formal definition would be - 
+// Any function that is passed as an argument to another function so that it can be executed in that other function is called as a callback function.
+
+
+
+
+
+
+
+
+
+
+
+// ASYNCHRONOUS
+
+// "I will finish later!"
+// Functions running in parallel with other functions are called asynchronous
+// A good example is JavaScript setTimeout()
+
+// Definition
+// Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events 
+// while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result.
+
+
+
+
+
+
+
+
+
+
+// PROMISES
+
+// "I Promise a Result!"
+// "Producing code" is code that can take some time
+// "Consuming code" is code that must wait for the result
+// A Promise is a JavaScript object that links producing code and consuming code
+
+
+// Definition
+// The Promise in JavaScript may look quite complicated to understand at first sight, but in reality, it is quite simple and is not rocket science. 
+// In JavaScript, a promise is just like a promise that you make in real life to show that you are committed to doing something.
+
+// For example, I promise to get good marks in mathematics, and then this Promise has two outcomes, either it will be fulfilled (or resolved) or not fulfilled (or be rejected). 
+// So if I get good marks, the Promise is resolved, but if I fail to get good marks, it will not be resolved because I could not keep my Promise.
+
+// However, in JavaScript, a promise has three outcomes; Promise gets resolved, gets rejected, or pending state, which means the Promise is not completed yet 
+// but may get completed after some time, so it is not rejected till now and is in the pending state.
+
+
+
+
+
+
+
+
+
+
+// ASYNC/AWAIT
+
+// "async and await make promises easier to write"
+// async makes a function return a Promise
+// await makes a function wait for a Promise
+
+
+// Definition
+// JavaScript is always synchronous and single-threaded that provides the event loops. The event loops enable us to queue up an activity. 
+// This activity will not happen until the loops become available after the program that queued the action has completed the execution. 
+// However, our program contains a large number of functionalities, which causes our code to be asynchronous. The Async/Await functionality is one of them. 
+// Async/Await is an extension of promises that we get as language support.
+
+// Async
+// An async function is a function that is declared with the async keyword and allows the await keyword inside it. 
+// The async and await keywords allow asynchronous, promise-based behavior to be written more easily and avoid configured promise chains. 
+// The async keyword may be used with any of the methods for creating a function.
+
+// Await
+// JavaScript Await function is used to wait for the promise. It could only be used inside the async block. 
+// It instructs the code to wait until the promise returns a response. It only delays the async block. 
+// Await is a simple command that instructs JavaScript to wait for an asynchronous action to complete before continuing with the feature. 
+// It's similar to a "pause until done" keyword. The await keyword is used to retrieve a value from a function where we will usually be used the then() function. 
+// Instead of calling after the asynchronous function, we'd use await to allocate a variable to the result and then use the result in the code as we will in the synchronous code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // EP 1
 
 // // SYNCHRONOUS
