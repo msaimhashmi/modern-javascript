@@ -572,47 +572,85 @@
 
 
 
-// EP 10
-// ASYNC & AWAIT
+// // EP 10
+// // ASYNC & AWAIT
 
-// "async and await make promises easier to write"
-// async makes a function return a Promise
-// await makes a function wait for a Promise
+// // "async and await make promises easier to write"
+// // async makes a function return a Promise
+// // await makes a function wait for a Promise
 
 
 
-// async function always return a promise
+// // async function always return a promise
+// const getTodos = async () => {
+
+//     // way to fetch data from anywhere without async & await
+//     // fetch('todos/saim.json').then(()=>
+//     // });
+
+
+//     // we use this way to fetch any data when we use async & await
+
+//     // The await keyword makes the function pause the execution and wait for a resolved promise before it continues:
+
+
+//     // this fetch returns a promise
+//     // this await keyword stores javascript
+//     // await stops it from assigning a value to this variable until the promise has resolved
+//     // once the promise has resolved we can take the value from that resolve function the response and assign it to this "response" variable
+//     // this is non-blocking code because we add all of this code inside async function and async itself is non-blocking function 
+
+//     // the power of this await keyword is we can chain together many of different things if we want to. 
+//     // The things return promise and then we'd doing them sequentially, we'd waiting for one promise to resolve before assigning to other. 
+//     // Which means this area is blocking inside of async function because we need to resolve first and then go the other when resolve first.
+//     const response = await fetch('todos/saim.json');
+
+//     // we use json function to get the data back which is also asynchronous itself and it return a promise in itself
+//     // we use await function here also to chain on this promise 
+//     const data = await response.json();
+//     return data;
+
+// };
+
+
+// // we need to use .then only here because async return promise.
+// getTodos()
+// .then(data => console.log(data));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// EP 11
+// THROWING ERRORS
+
 const getTodos = async () => {
+    const response = await fetch('todos/saimm.json');
 
-    // way to fetch data from anywhere without async & await
-    // fetch('todos/saim.json').then(()=>
-    // });
-
-
-    // we use this way to fetch any data when we use async & await
-
-    // The await keyword makes the function pause the execution and wait for a resolved promise before it continues:
-
-
-    // this fetch returns a promise
-    // this await keyword stores javascript
-    // await stops it from assigning a value to this variable until the promise has resolved
-    // once the promise has resolved we can take the value from that resolve function the response and assign it to this "response" variable
-    // this is non-blocking code because we add all of this code inside async function and async itself is non-blocking function 
-
-    // the power of this await keyword is we can chain together many of different things if we want to. 
-    // The things return promise and then we'd doing them sequentially, we'd waiting for one promise to resolve before assigning to other. 
-    // Which means this area is blocking inside of async function because we need to resolve first and then go the other when resolve first.
-    const response = await fetch('todos/saim.json');
-
-    // we use json function to get the data back which is also asynchronous itself and it return a promise in itself
-    // we use await function here also to chain on this promise 
+    // we need to throw our own error when something went wrong with resource url.  
+    if(response.status !== 200)
+    {
+        throw new Error('cannot fetch url, something went wrong!');
+    }
     const data = await response.json();
     return data;
-
 };
 
-
-// we need to use .then only here because async return promise.
 getTodos()
-.then(data => console.log(data));
+.then(data => console.log('resolved', data))
+.catch(err => console.log('rejected:', err));
